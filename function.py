@@ -4,14 +4,18 @@ import tkinter as tk
 class item:
 
     def __init__(self, gui, std_font):   
-        self.price = tk.Entry(gui, bg='grey', fg='white', font=std_font, justify="right")
-        self.size = tk.Entry(gui, bg='grey', fg='white', font=std_font, justify="right")
-        self.discount = tk.Entry(gui, bg='grey', fg='white', font=std_font, justify="right")
+        self.price = tk.Entry(gui, bg='grey', fg='white', font=std_font, 
+                              justify="right")
+        self.size = tk.Entry(gui, bg='grey', fg='white', font=std_font, 
+                             justify="right")
+        self.discount = tk.Entry(gui, bg='grey', fg='white', font=std_font, 
+                                 justify="right")
         self.pricelabel = tk.Label(gui, text='Price:', font=std_font)
         self.sizelabel = tk.Label(gui, text='Size(g/lb/etc.):', font=std_font)
         self.discountlabel = tk.Label(gui, text='Discount:', font=std_font)
         self.row = -1
         self.col = -1
+        self.resultlabel = tk.Label(gui, text='', font=std_font)
 
     def create(self, row, col):
         self.price.grid(row=row, column=col + 1)
