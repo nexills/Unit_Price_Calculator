@@ -3,32 +3,29 @@
 import tkinter as tk
 import function as fn
 
-def calculate(item):
-    # item is a item object
-    # this function calculate the unit_price of an item using data
-    # stored in it, and display the result to the label in the item
-    try: 
-        price = float(item.price.get())
-        size = float(item.size.get())
-        discount = float(item.discount.get())
-    except ValueError:
-        item.resultlabel['text'] = 'Field(s) are empty!'
-    else:
-        unit_price = price/size * (1-discount)
-        item.resultlabel['text'] = str(round(unit_price, 4))
-    finally:
-        item.resultlabel.grid(row=item.row+3, column=item.col+1)
-
 def calculate_all(item_list):
-    calculate(item_list[0])
-    minimum = float(item_list[0].resultlabel['text'])
-    min_index = 0
-    for i in range(1, len(item_list)):
-        calculate(item_list[i])
-        if (float(item_list[i].resultlabel['text']) < minimum):
-            minimum = float(item_list[i].resultlabel['text'])
-            min_index = i
-    result = tk.Label(gui, text='Cheapest: ' + str(min_index), font=std_font)
+    # calculate every items and find the minimum
+    minimum = -1
+    min_index = -1
+    for i in range(len(item_list)):
+        item_list[i].calculate()
+        try: 
+            float(item_list[i].resultlabel['text'])
+        except:
+            # happens if some fields in the item is empty
+            continue
+        else:
+            # set new minimum if less than or first item
+            if (minimum == -1):
+                minimum = float(item_list[i].resultlabel['text'])
+                min_index = 0
+            elif (float(item_list[i].resultlabel['text']) < minimum):
+                minimum = float(item_list[i].resultlabel['text'])
+                min_index = i
+    if (min_index == -1):
+        return
+    result = tk.Label(gui, text='Cheapest item: item ' + str(min_index+1)
+                      , font=std_font)
     result.grid(row=11, column=1)
 
 
@@ -51,8 +48,6 @@ if __name__ == '__main__':
     execute.grid(row=10, column=1)
 
 
-
-    
     gui.mainloop()
 
     
