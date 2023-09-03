@@ -21,9 +21,20 @@ def calculate_all(item_list):
                 min_index = i
     if (min_index == -1):
         return
-    result = tk.Label(gui, text='Cheapest item: item ' + str(min_index+1)
+    try:
+        if (min_index == 0):
+            cheaper_by = item_list[1].unit_price - item_list[0].unit_price
+            cheaper_by /= item_list[1].unit_price
+        elif (min_index == 1):
+            cheaper_by = item_list[0].unit_price - item_list[1].unit_price
+            cheaper_by /= item_list[0].unit_price
+    except:
+        # avoid division by zero
+        cheaper_by = 0
+    result = tk.Label(gui, text='Cheaper item: item ' + str(min_index+1
+                        ) + " by " + str(round(cheaper_by*100, 2)) + "%"
                       , font=std_font)
-    result.grid(row=20, column=1)
+    result.grid(row=16, column=0, columnspan=2)
 
 
 
@@ -32,16 +43,16 @@ if __name__ == '__main__':
     # set up the window
     gui.title("Calculator")
     # set up the gui elements
-    std_font = ('calibre',14,'normal') # define this as the standard font
+    std_font = ('calibre',18,'normal') # define this as the standard font
 
-    item_1 = fn.item(gui, std_font, 1)
+    item_1 = fn.item(gui, std_font, 1, 'lawngreen')
     item_1.create(0,0)
-    item_2 = fn.item(gui, std_font, 2)
+    item_2 = fn.item(gui, std_font, 2, 'cyan')
     item_2.create(6,0)
     item_list = [item_1, item_2]
     execute = tk.Button(gui, text='Calculate', font=std_font, 
                         command=lambda: calculate_all(item_list))
-    execute.grid(row=21, column=1)
+    execute.grid(row=15, column=1)
 
 
     gui.mainloop()

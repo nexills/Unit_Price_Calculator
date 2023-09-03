@@ -5,7 +5,7 @@ class item:
 
     # class atributes
 
-    def __init__(self, gui, std_font, number):
+    def __init__(self, gui, std_font, number, colour):
         # setting up labels and entries   
         self.price = tk.Entry(gui, bg='grey', fg='white', font=std_font, 
                               justify="right", width = 7)
@@ -15,12 +15,17 @@ class item:
                                  justify="right", width = 7)
         self.num_items = tk.Entry(gui, bg='grey', fg='white', font=std_font, 
                                  justify="right", width = 7)
-        self.title = tk.Label(gui, text='Item ' + str(number), font=std_font)
+        self.title = tk.Label(gui, text='Item ' + str(number), font=std_font,
+                              bg = colour)
         self.percentage = tk.Label(gui, text='%', font=std_font, width = 1)
-        self.pricelabel = tk.Label(gui, text='Price:', font=std_font)
-        self.sizelabel = tk.Label(gui, text='Size(g/lb/etc.):', font=std_font)
-        self.numlabel = tk.Label(gui, text='Number of items:', font=std_font)
-        self.discountlabel = tk.Label(gui, text='Discount:', font=std_font)
+        self.pricelabel = tk.Label(gui, text='Price:', font=std_font,
+                              bg = colour)
+        self.sizelabel = tk.Label(gui, text='Size(g/lb/etc.):', font=std_font,
+                              bg = colour)
+        self.numlabel = tk.Label(gui, text='Number of items:', font=std_font,
+                              bg = colour)
+        self.discountlabel = tk.Label(gui, text='Discount:', font=std_font,
+                              bg = colour)
         self.row = -1
         self.col = -1
         # special labels
@@ -33,16 +38,16 @@ class item:
 
     def create(self, row, col):
         # put everything on screen
-        self.title.grid(row=row, column=col)
-        self.price.grid(row=row+1, column=col + 1)
-        self.size.grid(row=row + 2, column=col + 1)
-        self.discount.grid(row=row + 4, column=col + 1)
-        self.pricelabel.grid(row=row+1, column=col)
-        self.sizelabel.grid(row=row + 2, column=col)
-        self.discountlabel.grid(row=row + 4, column=col)
-        self.percentage.grid(row=row+4, column=col+2)
-        self.num_items.grid(row=row+3, column=col+1)
-        self.numlabel.grid(row=row+3, column=col)
+        self.title.grid(row=row, column=col, sticky='nsew', columnspan=2)
+        self.price.grid(row=row+1, column=col + 1, sticky='nsew')
+        self.size.grid(row=row + 2, column=col + 1, sticky='nsew')
+        self.discount.grid(row=row + 4, column=col + 1, sticky='nsew')
+        self.pricelabel.grid(row=row+1, column=col, sticky='nsew')
+        self.sizelabel.grid(row=row + 2, column=col, sticky='nsew')
+        self.discountlabel.grid(row=row + 4, column=col, sticky='nsew')
+        self.percentage.grid(row=row+4, column=col+2, sticky='nsew')
+        self.num_items.grid(row=row+3, column=col+1, sticky='nsew')
+        self.numlabel.grid(row=row+3, column=col, sticky='nsew')
         self.row = row
         self.col = col
 
