@@ -11,4 +11,10 @@ The calculator is complete.
 I often see different shops selling the same item in different packages, for different prices. For instance, one shop may sell 3 packs of ships, 210g each, for $10, while the other sell 2 packs of 290g chips for $8 - this makes it difficult to get the best deals.
 Therefore, I built this calculator to automatically calculate and compare the unit price of different items.
 
-# Build Instructions
+# Build Instructions (Windows)
+1. Install Python and Pip
+2. In Command Prompt, enter py -m pip install pyinstaller
+3. Change directory to the location where the repo is downloaded
+4. Run py -m PyInstaller main.py
+5. Go to ./dist/main/
+6. Run main.exe
