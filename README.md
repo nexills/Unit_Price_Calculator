@@ -7,10 +7,6 @@ By entering the total price, size (grams, lb, kg, etc.) per pack, number of pack
 # Progress
 The calculator is complete.
 
-# Background
-I often see different shops selling the same item in different packages, for different prices. For instance, one shop may sell 3 packs of ships, 210g each, for $10, while the other sell 2 packs of 290g chips for $8 - this makes it difficult to get the best deals.
-Therefore, I built this calculator to automatically calculate and compare the unit price of different items.
-
 # Build Instructions (Windows)
 1. Install Python and Pip
 2. In Command Prompt, enter py -m pip install pyinstaller
